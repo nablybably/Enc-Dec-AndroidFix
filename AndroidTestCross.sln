@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidTestCross", "AndroidTestCross\AndroidTestCross\AndroidTestCross.csproj", "{1EC832C7-CFE1-47C2-BCA7-998E224D94D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidTestCross.Android", "AndroidTestCross\AndroidTestCross.Android\AndroidTestCross.Android.csproj", "{638D1324-7D13-4905-BD99-F03737C60154}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidTestCross.Desktop", "AndroidTestCross\AndroidTestCross.Desktop\AndroidTestCross.Desktop.csproj", "{C5C0AFE7-3CB7-4A57-82BD-532588FCBDAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidTestCross.iOS", "AndroidTestCross\AndroidTestCross.iOS\AndroidTestCross.iOS.csproj", "{3A8968A3-3CBD-47A0-8043-CE19FE4D3C26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidTestCross.Browser", "AndroidTestCross\AndroidTestCross.Browser\AndroidTestCross.Browser.csproj", "{EAA07358-20CB-4E1D-93E9-941D89EFE767}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1EC832C7-CFE1-47C2-BCA7-998E224D94D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC832C7-CFE1-47C2-BCA7-998E224D94D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC832C7-CFE1-47C2-BCA7-998E224D94D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC832C7-CFE1-47C2-BCA7-998E224D94D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{638D1324-7D13-4905-BD99-F03737C60154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{638D1324-7D13-4905-BD99-F03737C60154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{638D1324-7D13-4905-BD99-F03737C60154}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{638D1324-7D13-4905-BD99-F03737C60154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{638D1324-7D13-4905-BD99-F03737C60154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{638D1324-7D13-4905-BD99-F03737C60154}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C5C0AFE7-3CB7-4A57-82BD-532588FCBDAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5C0AFE7-3CB7-4A57-82BD-532588FCBDAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5C0AFE7-3CB7-4A57-82BD-532588FCBDAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5C0AFE7-3CB7-4A57-82BD-532588FCBDAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A8968A3-3CBD-47A0-8043-CE19FE4D3C26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A8968A3-3CBD-47A0-8043-CE19FE4D3C26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A8968A3-3CBD-47A0-8043-CE19FE4D3C26}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3A8968A3-3CBD-47A0-8043-CE19FE4D3C26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A8968A3-3CBD-47A0-8043-CE19FE4D3C26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A8968A3-3CBD-47A0-8043-CE19FE4D3C26}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EAA07358-20CB-4E1D-93E9-941D89EFE767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAA07358-20CB-4E1D-93E9-941D89EFE767}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAA07358-20CB-4E1D-93E9-941D89EFE767}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAA07358-20CB-4E1D-93E9-941D89EFE767}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
