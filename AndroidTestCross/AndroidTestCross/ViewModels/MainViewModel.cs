@@ -23,14 +23,14 @@ public partial class MainViewModel : ViewModelBase
     public MainViewModel()
     {
         debug = "";
-        fhFilePath = "";
+        fhFilePath = "Test";
         shuffleSeed = "";
         fileShuffle = "";
         output = "";
         input = "";
         dirFiles = new ObservableCollection<IFileTreeObject>();
         
-        fh = new FileHandler("/", this);
+        fh = new FileHandler(this);
     }
 
     public void showFiles()
@@ -39,5 +39,9 @@ public partial class MainViewModel : ViewModelBase
         {
             Console.WriteLine(file.getName);
         }
+    }
+    public void toggleHidden()
+    {
+        fh.toggleHidden();
     }
 }

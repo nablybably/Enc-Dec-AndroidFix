@@ -17,8 +17,10 @@ public class FileHandler
 
     private string loadedBuffer = "";
 
+    private bool hideHidden = true;
+    
     private MainViewModel mvm;
-    public string filePath
+    public string FilePath
     {
         get { return _filePath; }
         set
@@ -27,19 +29,34 @@ public class FileHandler
         }
     }
     
-    public FileHandler(string filePath, MainViewModel mvm, string filePass = "" )
+    public FileHandler(MainViewModel mvm, string filePass = "" )
     {
-        this.filePath = filePath;
+        FilePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + Path.DirectorySeparatorChar + "nabsEncryptorDecryptor";
         this.filePass = filePass;
-
-        Console.WriteLine("PossRoot: " + Directory.GetDirectoryRoot("."));
+        if (!Directory.Exists(FilePath))
+        {
+            makeFileStructure();
+        }
+        else
+        {
+            //FilePath = ConfigHandler.getConfigValue("Path");
+        }
         
         this.mvm = mvm;
         
         mvm.Output = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-        mvm.Input = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         
         loadDir();
+    }
+
+    /// <summary>
+    /// Makes the filestructure that the app uses(folder in documents that would contain config/keys/...)
+    /// </summary>
+    public void makeFileStructure()
+    {
+        Directory.CreateDirectory(FilePath);
+        Directory.CreateDirectory(FilePath + Path.DirectorySeparatorChar + "keys");
+        ConfigHandler.createConfig(FilePath + Path.DirectorySeparatorChar);
     }
 
     /// <summary>
@@ -49,7 +66,7 @@ public class FileHandler
     /// <exception cref="FileExistsException">File already exists.</exception>
     public void fileCreate(bool overwrite = false)
     {
-        string fileFullPath = Path.Combine(this.filePath, this.fileName); 
+        string fileFullPath = Path.Combine(this.FilePath, this.fileName); 
         if (overwrite)
         {
             File.Delete(fileFullPath);
@@ -72,7 +89,7 @@ public class FileHandler
     /// <exception cref="FileNotFoundException">Given file does not exist.</exception>
     public void fileWrite(string content, bool append = false)
     {
-        string fileFullPath = Path.Combine(this.filePath, this.fileName);
+        string fileFullPath = Path.Combine(this.FilePath, this.fileName);
         if (!File.Exists(fileFullPath))
         {
             throw new FileNotFoundException("Given file/path does not exist: " + fileFullPath + ".");
@@ -90,20 +107,25 @@ public class FileHandler
 
     public string[] fileRead()
     {
-        string fileFullPath = Path.Combine(this.filePath, this.fileName);
+        string fileFullPath = Path.Combine(this.FilePath, this.fileName);
         if (!File.Exists(fileFullPath))
         {
             throw new FileNotFoundException("Given file/path does not exist: " + fileFullPath + ".");
         }
         return File.ReadAllLines(fileFullPath);
     }
-    
+
+    public void toggleHidden()
+    {
+        hideHidden ^= true;
+        loadDir();
+    }
     public void loadDir()
     {
-        Console.WriteLine("Loading directory: " + this.filePath);
+        Console.WriteLine("Loading directory: " + FilePath);
         // Clear list for filestructure
         mvm.DirFiles.Clear();
-        if (filePath != "/")
+        if (FilePath != "/")
         {
             mvm.DirFiles.Add(new PrevFile(this));
         }
@@ -112,14 +134,16 @@ public class FileHandler
         try
         {
             // Fetch all directories
-            string[] directories = Directory.GetDirectories(filePath);
+            string[] directories = Directory.GetDirectories(FilePath);
             List<string> directs = directories.ToList();
+            directs.RemoveAll(ob => Path.GetFileName(ob).StartsWith('.') && hideHidden);
             directs.Sort();
             
             // Fetch all files
-            string[] files = Directory.GetFiles(filePath);
+            string[] files = Directory.GetFiles(FilePath);
             List<string> fils = files.ToList();
             fils.Sort();
+            fils.RemoveAll(ob => Path.GetFileName(ob).StartsWith('.') && hideHidden);
             
             // For each directory add an directory object to the list
             foreach (string dir in directs)
@@ -141,7 +165,17 @@ public class FileHandler
         {
             Console.WriteLine(file.getName);
         }*/
-        Console.WriteLine("Loaded directory: " + this.filePath);
+        Console.WriteLine(FilePath.Length);
+        // Pos size variable
+        if (FilePath.Length >= 30)
+        {
+            mvm.FhFilePath = "..." + FilePath.Substring(FilePath.Length - 27);
+        }
+        else
+        {
+            mvm.FhFilePath = FilePath;
+        }
+        
     }
 
     public void loadKey()
@@ -156,15 +190,15 @@ public class FileHandler
 
     public void retDir()
     {
-        Console.WriteLine("PrevPath: " + filePath);
-        filePath = Path.GetDirectoryName(filePath) ?? "/";
-        Console.WriteLine("NewPath: " + filePath);
+        Console.WriteLine("PrevPath: " + FilePath);
+        FilePath = Path.GetDirectoryName(FilePath) ?? "/";
+        Console.WriteLine("NewPath: " + FilePath);
         loadDir();
     }
 
     public void setPath(string path)
     {
-        filePath = path;
+        FilePath = path;
     }
 
     public void setName(string name)

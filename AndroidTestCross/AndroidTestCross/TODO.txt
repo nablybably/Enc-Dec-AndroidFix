@@ -1,0 +1,16 @@
+Todo:
+|
+|
+|---- FileHandler:
+|       CrumblePath variable amount of characters
+|       Add button to go to config/key directory
+|       Implement other methods
+|
+|---- ConfigHandler:
+|       Implement
+|
+|---- MainView:
+|       Make debug panel(right, blue) a openable tab
+|
+|---- General:
+|       Implement encrypt/decrypt/keygen/keyload/...

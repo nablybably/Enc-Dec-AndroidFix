@@ -15,6 +15,7 @@ public partial class MainView : UserControl
     public MainView()
     {
         InitializeComponent();
+        ConfigHandler.loadConfig();
     }
 
     private void getMvm(object? sender, EventArgs e)
@@ -24,7 +25,6 @@ public partial class MainView : UserControl
     
     private void InputBox_OnTextChanged(object? sender, TextChangedEventArgs e)
     {
-        Console.WriteLine("TextChanged: " + Input.Text);
         mvm!.Debug = Input.Text??String.Empty;
     }
 
@@ -48,15 +48,10 @@ public partial class MainView : UserControl
     private void shuffle(object? sender, RoutedEventArgs e)
     {
         Console.WriteLine("Clicked");
-        //List<IFileTreeObject> temp = new List<IFileTreeObject>();
-        mvm.DirFiles.Add(new NormalFile("/home/nably/test.txt", null));
-        mvm.DirFiles.Add(new NormalFile("/home/nably/test1.txt", null));
-        mvm.DirFiles.Add(new NormalFile("/home/nably/test2txt", null));
-        mvm.DirFiles.Add(new NormalFile("/home/nably/test3.txt", null));
-        mvm.DirFiles.Add(new NormalFile("/home/nably/test4.txt", null));
-        
-        //mvm.DirFiles = temp;
-        
-        //mvm.showFiles();
+    }
+    
+    public void toggleHidden(object? sender, RoutedEventArgs e)
+    {
+        mvm.toggleHidden();
     }
 }
